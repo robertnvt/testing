@@ -1,0 +1,22 @@
+import openai
+openai.api_key = 'YOUR_API_KEY'
+
+def summarize_document(document):
+    response = openai.Completion.create(
+        engine='text-davinci-003',
+        prompt=document,
+        max_tokens=100,  # Adjust the number of tokens as per your desired summary length
+        temperature=0.3,  # Adjust the temperature to control the randomness of the output
+        top_p=1.0,
+        frequency_penalty=0.0,
+        presence_penalty=0.0
+    )
+    summary = response.choices[0].text.strip()
+    return summary
+
+document = """
+This is your document text that you want to summarize.
+"""
+
+summary = summarize_document(document)
+print(summary)
